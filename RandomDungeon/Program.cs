@@ -12,7 +12,7 @@ namespace RandomDungeon
         {
             Arena arena = new Arena(new List<Enemy>());
             Random random = new Random(int.Parse(args[0]));
-
+            Random enemiesRand = new Random(int.Parse(args[1]));
             if (args.Length == 2)
             {
                 // Gera 10 Inimigos Aleatórios
@@ -26,7 +26,9 @@ namespace RandomDungeon
                 arena.AddEnemy(Enemy.GenerateRandomEnemy(int.Parse(args[0]) + 8));
                 arena.AddEnemy(Enemy.GenerateRandomEnemy(int.Parse(args[0]) + 9));
                 arena.AddEnemy(Enemy.GenerateRandomEnemy(int.Parse(args[0]) + 10));
-            } else {
+            }
+            else
+            {
                 // Gera 4 Inimigos Predefinidos
                 arena.AddEnemy(new Enemy("Goblin", 100, 10));
                 arena.AddEnemy(new Enemy("Orc", 120, 15));
@@ -36,27 +38,29 @@ namespace RandomDungeon
 
             // Mostra a Lista de Inimigos Atualmente na Arena
             // CÓDIGO AQUI
-            
+            arena.ShowEnemies();
             // Repetir Batalha (Enquanto Existe Mais do que 1 Inimigo)
-            while (// CÓDIGO AQUI)
+            while (arena.GetEnemies().Count > 1)
             {
                 // Obter a Lista Atual de Inimigos
                 List<Enemy> enemies = arena.GetEnemies();
 
                 // Selecionar Aleatoriamente um Atacante
-                int attackerIndex = random.Next(enemies.Count);
+                int attackerIndex = enemiesRand.Next(enemies.Count);
 
                 // Selecionar Aleatoriamente um Defensor
                 // Garantindo que Não Seja o Mesmo que o Atacante
                 int defenderIndex;
                 // CÓDIGO AQUI
-                
+                defenderIndex = random.Next(enemies.Count);
+                while (defenderIndex == attackerIndex)
+                {
+                    defenderIndex = random.Next(enemies.Count);
+                }
                 // Obter os Objetos Atacante e Defensor
                 Enemy attacker = enemies[attackerIndex];
                 Enemy defender = enemies[defenderIndex];
-
                 arena.Battle(attacker, defender);
-
             }
 
             Console.WriteLine($"{arena.GetEnemies()[0].GetName()} Wins!");
