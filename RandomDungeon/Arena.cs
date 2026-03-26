@@ -36,9 +36,10 @@ namespace RandomDungeon
         // Exemplo: "Arena: Troll, Skeleton, Ogre"
         public void ShowEnemies()
         {
-            foreach (Enemy nemy in enemies)
+            Console.Write($"Arena: {enemies[0].GetName()}");
+            for (int i = 1; i < enemies.Count; i++)
             {
-                Console.Write($"{nemy.ToString()} ");
+                Console.Write($", {enemies[i].GetName()}");
             }
         }
 

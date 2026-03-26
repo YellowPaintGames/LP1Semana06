@@ -52,16 +52,16 @@ namespace RandomDungeon
                 int defenderIndex;
                 // CÓDIGO AQUI
                 defenderIndex = random.Next(enemies.Count);
-                while (defenderIndex == attackerIndex)
-                {
-                    defenderIndex = random.Next(enemies.Count);
-                }
+                //while (defenderIndex == attackerIndex)
+                //{
+                //    defenderIndex = random.Next(enemies.Count);
+                //}
                 // Obter os Objetos Atacante e Defensor
                 Enemy attacker = enemies[attackerIndex];
                 Enemy defender = enemies[defenderIndex];
                 arena.Battle(attacker, defender);
             }
-            Console.WriteLine($"{arena.GetEnemies()[0].GetName()} Wins!");
+            Console.WriteLine($"\n{arena.GetEnemies()[0].GetName()} Wins!");
         }
     }
 }
