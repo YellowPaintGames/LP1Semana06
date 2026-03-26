@@ -12,7 +12,6 @@ namespace RandomDungeon
         {
             Arena arena = new Arena(new List<Enemy>());
             Random random = new Random(int.Parse(args[0]));
-            Random enemiesRand = new Random(int.Parse(args[1]));
             if (args.Length == 2)
             {
                 // Gera 10 Inimigos Aleatórios
@@ -46,7 +45,7 @@ namespace RandomDungeon
                 List<Enemy> enemies = arena.GetEnemies();
 
                 // Selecionar Aleatoriamente um Atacante
-                int attackerIndex = enemiesRand.Next(enemies.Count);
+                int attackerIndex = random.Next(enemies.Count);
 
                 // Selecionar Aleatoriamente um Defensor
                 // Garantindo que Não Seja o Mesmo que o Atacante
@@ -62,7 +61,6 @@ namespace RandomDungeon
                 Enemy defender = enemies[defenderIndex];
                 arena.Battle(attacker, defender);
             }
-
             Console.WriteLine($"{arena.GetEnemies()[0].GetName()} Wins!");
         }
     }
