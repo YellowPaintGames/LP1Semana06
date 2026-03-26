@@ -36,18 +36,23 @@ namespace RandomDungeon
         // Exemplo: "Arena: Troll, Skeleton, Ogre"
         public void ShowEnemies()
         {
-            // CÓDIGO AQUI
+            foreach (Enemy nemy in enemies)
+            {
+                Console.Write($"{nemy.ToString()} ");
+            }
         }
-        
+
         // Simula uma Batalha Entre Dois Inimigos
         public void Battle(Enemy attacker, Enemy defender)
         {
             // Subtrai o Ataque do Atacante à Vida do Defensor
             // Garante que a Vida Não Fique Negativa
             // CÓDIGO AQUI
-            
+            defender.SetHealth(attacker.GetHealth() - attacker.GetAttack());
+            if (defender.GetHealth() < 0) defender.SetHealth(0);
             // Se a Vida do Defensor Chegar a 0, Remove-o da Arena
             // CÓDIGO AQUI
+            if (defender.GetHealth() == 0) RemoveEnemy(defender);
         }
     }
 }
